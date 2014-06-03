@@ -9,6 +9,7 @@
     .divider(class=project.status)
     p
       a(href="/p/" + project.id, target="_blank") #{project.description}
+    p #{user}
     .info
       span.status #{project.status}
       each tag, index in project.tags
@@ -18,9 +19,9 @@
         .btn-group
           if(user)
             if(project.followers.indexOf(user._id) == -1)
-              a.follow.btn(href='/api/projects/'+ project._id +'/follow') follow
+              a.follow.btn(href='/api/projects/'+ project.id +'/follow') follow
             else
-              a.unfollow.btn(href='/api/projects/'+ project._id +'/unfollow') unfollow
-          if(project.leader._id.toString() == user._id.toString())
-            a.btn(href='/projects/edit/'+project._id) Edit  
+              a.unfollow.btn(href='/api/projects/'+ project.id +'/unfollow') unfollow
+            if(project.leader._id.toString() == user.id.toString())
+              a.btn(href='/projects/edit/'+project.id) Edit  
 
